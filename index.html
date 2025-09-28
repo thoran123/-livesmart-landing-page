@@ -3,8 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LiveSmart - Your Cost of Living Companion | Thoran Kumar Cherukuru Ramesh - s224967779</title>
+    <title>LiveSmart - Revolutionary Cost of Living Intelligence | Thoran Kumar Cherukuru Ramesh - s224967779</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+        
+        :root {
+            --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --secondary-gradient: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            --accent-gradient: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            --dark-gradient: linear-gradient(135deg, #0c0c0c 0%, #1a1a1a 100%);
+            --glass: rgba(255, 255, 255, 0.1);
+            --glass-border: rgba(255, 255, 255, 0.2);
+            --text-primary: #ffffff;
+            --text-secondary: rgba(255, 255, 255, 0.8);
+            --shadow-primary: 0 20px 40px rgba(0, 0, 0, 0.1);
+            --shadow-hover: 0 30px 60px rgba(0, 0, 0, 0.15);
+        }
+        
         * {
             margin: 0;
             padding: 0;
@@ -12,199 +28,566 @@
         }
         
         body {
-            font-family: 'Arial', sans-serif;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
             line-height: 1.6;
-            color: #333;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: var(--text-primary);
+            background: var(--dark-gradient);
+            overflow-x: hidden;
         }
         
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
+        /* Animated Background */
+        .animated-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
+            background: var(--dark-gradient);
         }
         
-        /* Header Section */
-        .hero {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 80px 0;
-            text-align: center;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-        }
-        
-        .main-headline {
-            font-size: 3.5rem;
-            font-weight: bold;
-            margin-bottom: 20px;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-            animation: fadeInUp 1s ease-out;
-        }
-        
-        .supporting-headline {
-            font-size: 1.4rem;
-            margin-bottom: 40px;
+        .animated-bg::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--primary-gradient);
             opacity: 0.9;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-            animation: fadeInUp 1s ease-out 0.3s both;
+            z-index: -1;
         }
         
-        .hero-shot {
-            margin: 40px 0;
-            animation: fadeInUp 1s ease-out 0.6s both;
+        .floating-shapes {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
         }
         
-        .hero-image {
-            width: 300px;
-            height: 300px;
-            background: rgba(255,255,255,0.2);
-            border-radius: 20px;
+        .shape {
+            position: absolute;
+            background: var(--glass);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--glass-border);
+            border-radius: 50%;
+            animation: float 20s infinite linear;
+        }
+        
+        .shape:nth-child(1) { width: 100px; height: 100px; top: 10%; left: 10%; animation-delay: 0s; }
+        .shape:nth-child(2) { width: 150px; height: 150px; top: 20%; right: 10%; animation-delay: -5s; }
+        .shape:nth-child(3) { width: 80px; height: 80px; bottom: 20%; left: 20%; animation-delay: -10s; }
+        .shape:nth-child(4) { width: 120px; height: 120px; bottom: 10%; right: 20%; animation-delay: -15s; }
+        .shape:nth-child(5) { width: 200px; height: 200px; top: 50%; left: 50%; animation-delay: -7s; }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            25% { transform: translateY(-20px) rotate(90deg); }
+            50% { transform: translateY(-40px) rotate(180deg); }
+            75% { transform: translateY(-20px) rotate(270deg); }
+        }
+        
+        /* Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            padding: 20px 0;
+            background: var(--glass);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--glass-border);
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+        
+        .navbar.scrolled {
+            padding: 15px 0;
+            background: rgba(255, 255, 255, 0.05);
+        }
+        
+        .nav-container {
+            max-width: 1400px;
             margin: 0 auto;
+            padding: 0 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 2rem;
+            font-weight: 800;
+            background: var(--accent-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 40px;
+        }
+        
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .nav-links a:hover {
+            color: var(--text-primary);
+            transform: translateY(-2px);
+        }
+        
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent-gradient);
+            transition: width 0.3s ease;
+        }
+        
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+        
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 4rem;
-            backdrop-filter: blur(10px);
-            border: 2px solid rgba(255,255,255,0.3);
-            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+            text-align: center;
+            padding: 120px 40px 80px;
+            position: relative;
         }
         
-        .benefit-summary {
-            font-size: 1.2rem;
-            margin: 40px auto;
-            max-width: 700px;
-            background: rgba(255,255,255,0.1);
-            padding: 30px;
-            border-radius: 15px;
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255,255,255,0.2);
-            animation: fadeInUp 1s ease-out 0.9s both;
+        .hero-content {
+            max-width: 1000px;
+            z-index: 2;
         }
         
-        .cta-button {
-            background: #ff6b6b;
-            color: white;
-            padding: 20px 40px;
-            border: none;
-            border-radius: 50px;
-            font-size: 1.3rem;
-            font-weight: bold;
-            cursor: pointer;
-            text-decoration: none;
+        .hero-badge {
             display: inline-block;
-            margin-top: 30px;
+            padding: 12px 24px;
+            background: var(--glass);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 30px;
+            animation: slideInDown 1s ease-out;
+        }
+        
+        .main-headline {
+            font-size: clamp(3rem, 8vw, 6rem);
+            font-weight: 800;
+            margin-bottom: 30px;
+            background: linear-gradient(135deg, #ffffff 0%, #a8edea 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: slideInUp 1s ease-out 0.2s both;
+            line-height: 1.1;
+        }
+        
+        .supporting-headline {
+            font-size: 1.5rem;
+            font-weight: 400;
+            color: var(--text-secondary);
+            margin-bottom: 50px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            animation: slideInUp 1s ease-out 0.4s both;
+        }
+        
+        .hero-visual {
+            width: 400px;
+            height: 400px;
+            margin: 50px auto;
+            position: relative;
+            animation: slideInUp 1s ease-out 0.6s both;
+        }
+        
+        .hero-circle {
+            width: 100%;
+            height: 100%;
+            background: var(--glass);
+            backdrop-filter: blur(30px);
+            border: 2px solid var(--glass-border);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            box-shadow: var(--shadow-primary);
+        }
+        
+        .hero-circle::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: conic-gradient(from 0deg, transparent, rgba(255,255,255,0.1), transparent);
+            animation: rotate 10s linear infinite;
+        }
+        
+        .hero-icon {
+            font-size: 8rem;
+            background: var(--accent-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            z-index: 2;
+            position: relative;
+        }
+        
+        @keyframes rotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .hero-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin: 60px 0;
+            animation: slideInUp 1s ease-out 0.8s both;
+        }
+        
+        .stat-item {
+            text-align: center;
+            padding: 30px;
+            background: var(--glass);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
             transition: all 0.3s ease;
-            box-shadow: 0 5px 15px rgba(255, 107, 107, 0.4);
-            animation: fadeInUp 1s ease-out 1.2s both;
         }
         
-        .cta-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(255, 107, 107, 0.6);
+        .stat-item:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-hover);
         }
         
-        /* Benefits Section */
-        .benefits {
-            background: white;
-            padding: 80px 0;
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 800;
+            background: var(--accent-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            display: block;
+        }
+        
+        .stat-label {
+            color: var(--text-secondary);
+            font-weight: 500;
+            margin-top: 10px;
+        }
+        
+        /* Benefit Summary */
+        .benefit-summary {
+            background: var(--glass);
+            backdrop-filter: blur(30px);
+            border: 1px solid var(--glass-border);
+            border-radius: 25px;
+            padding: 50px;
+            margin: 60px auto;
+            max-width: 800px;
+            font-size: 1.3rem;
+            font-weight: 400;
+            color: var(--text-secondary);
+            line-height: 1.8;
+            animation: slideInUp 1s ease-out 1s both;
+            box-shadow: var(--shadow-primary);
+        }
+        
+        /* CTA Buttons */
+        .cta-container {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 60px;
+            animation: slideInUp 1s ease-out 1.2s both;
+        }
+        
+        .cta-primary, .cta-secondary {
+            padding: 20px 40px;
+            border-radius: 50px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .cta-primary {
+            background: var(--secondary-gradient);
+            color: white;
+            box-shadow: 0 10px 30px rgba(245, 87, 108, 0.4);
+        }
+        
+        .cta-primary:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(245, 87, 108, 0.6);
+        }
+        
+        .cta-secondary {
+            background: var(--glass);
+            backdrop-filter: blur(20px);
+            border: 2px solid var(--glass-border);
+            color: var(--text-primary);
+        }
+        
+        .cta-secondary:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.2);
+        }
+        
+        /* Section Styling */
+        .section {
+            padding: 120px 40px;
+            position: relative;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        .section-header {
+            text-align: center;
+            margin-bottom: 80px;
+        }
+        
+        .section-badge {
+            display: inline-block;
+            padding: 10px 20px;
+            background: var(--glass);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: var(--text-secondary);
         }
         
         .section-title {
-            text-align: center;
-            font-size: 2.5rem;
-            margin-bottom: 50px;
-            color: #333;
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 800;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, #ffffff 0%, #a8edea 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
         
+        .section-subtitle {
+            font-size: 1.3rem;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        /* Benefits Grid */
         .benefits-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            margin-top: 50px;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 40px;
+            margin-top: 80px;
         }
         
         .benefit-card {
-            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-            color: white;
-            padding: 40px;
-            border-radius: 15px;
-            text-align: center;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            transition: transform 0.3s ease;
+            background: var(--glass);
+            backdrop-filter: blur(30px);
+            border: 1px solid var(--glass-border);
+            border-radius: 25px;
+            padding: 50px;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+            box-shadow: var(--shadow-primary);
+        }
+        
+        .benefit-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+            transition: left 0.6s ease;
+        }
+        
+        .benefit-card:hover::before {
+            left: 100%;
         }
         
         .benefit-card:hover {
-            transform: translateY(-10px);
+            transform: translateY(-15px);
+            box-shadow: var(--shadow-hover);
+            border-color: rgba(255, 255, 255, 0.3);
         }
         
         .benefit-icon {
-            font-size: 3rem;
-            margin-bottom: 20px;
+            width: 80px;
+            height: 80px;
+            background: var(--accent-gradient);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(79, 172, 254, 0.3);
         }
         
         .benefit-card h3 {
             font-size: 1.5rem;
-            margin-bottom: 15px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: var(--text-primary);
         }
         
-        /* Social Proof Section */
-        .social-proof {
-            background: #f8f9fa;
-            padding: 80px 0;
+        .benefit-card p {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            line-height: 1.7;
         }
         
-        .testimonials {
+        /* Testimonials */
+        .testimonials-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 30px;
-            margin-top: 50px;
+            grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+            gap: 40px;
+            margin-top: 80px;
         }
         
         .testimonial {
-            background: white;
-            padding: 30px;
-            border-radius: 15px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            background: var(--glass);
+            backdrop-filter: blur(30px);
+            border: 1px solid var(--glass-border);
+            border-radius: 25px;
+            padding: 40px;
             position: relative;
+            transition: all 0.3s ease;
+            box-shadow: var(--shadow-primary);
         }
         
-        .testimonial::before {
-            content: '"';
-            font-size: 4rem;
-            color: #667eea;
+        .testimonial:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-hover);
+        }
+        
+        .testimonial-quote {
+            font-size: 3rem;
+            color: var(--text-secondary);
             position: absolute;
-            top: -10px;
-            left: 20px;
+            top: 20px;
+            left: 30px;
+            opacity: 0.3;
         }
         
         .testimonial-text {
-            font-style: italic;
-            margin-bottom: 20px;
-            padding-left: 30px;
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--text-secondary);
+            margin: 40px 0 30px 0;
+            position: relative;
+            z-index: 2;
         }
         
         .testimonial-author {
-            font-weight: bold;
-            color: #667eea;
-            text-align: right;
+            display: flex;
+            align-items: center;
+            gap: 15px;
         }
         
-        .testimonial-role {
+        .author-avatar {
+            width: 60px;
+            height: 60px;
+            background: var(--accent-gradient);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: white;
+        }
+        
+        .author-info h4 {
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 5px;
+        }
+        
+        .author-info p {
+            color: var(--text-secondary);
             font-size: 0.9rem;
-            color: #666;
-            text-align: right;
+        }
+        
+        /* Student Info */
+        .student-info {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: var(--glass);
+            backdrop-filter: blur(30px);
+            border: 1px solid var(--glass-border);
+            border-radius: 15px;
+            padding: 20px;
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            box-shadow: var(--shadow-primary);
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+        
+        .student-info:hover {
+            background: rgba(255, 255, 255, 0.15);
+            transform: translateY(-5px);
+        }
+        
+        .student-info div {
+            margin-bottom: 8px;
+        }
+        
+        .student-info div:last-child {
+            margin-bottom: 0;
+        }
+        
+        .student-info strong {
+            color: var(--text-primary);
         }
         
         /* Animations */
-        @keyframes fadeInUp {
+        @keyframes slideInUp {
             from {
                 opacity: 0;
-                transform: translateY(30px);
+                transform: translateY(50px);
             }
             to {
                 opacity: 1;
@@ -212,181 +595,566 @@
             }
         }
         
+        @keyframes slideInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* Scroll Reveal */
+        .reveal {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s ease;
+        }
+        
+        .reveal.revealed {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
         /* Responsive Design */
         @media (max-width: 768px) {
+            .nav-container {
+                padding: 0 20px;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+            
+            .hero {
+                padding: 100px 20px 60px;
+            }
+            
+            .hero-visual {
+                width: 300px;
+                height: 300px;
+            }
+            
+            .hero-icon {
+                font-size: 6rem;
+            }
+            
+            .hero-stats {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .benefit-summary {
+                padding: 30px;
+                font-size: 1.1rem;
+            }
+            
+            .cta-container {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .section {
+                padding: 80px 20px;
+            }
+            
+            .benefits-grid,
+            .testimonials-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+            
+            .benefit-card,
+            .testimonial {
+                padding: 30px;
+            }
+            
+            .student-info {
+                bottom: 20px;
+                right: 20px;
+                left: 20px;
+                position: relative;
+                margin-top: 40px;
+            }
+        }
+        
+        @media (max-width: 480px) {
             .main-headline {
                 font-size: 2.5rem;
             }
             
-            .hero-image {
+            .supporting-headline {
+                font-size: 1.2rem;
+            }
+            
+            .hero-visual {
                 width: 250px;
                 height: 250px;
             }
             
-            .benefits-grid {
-                grid-template-columns: 1fr;
+            .hero-icon {
+                font-size: 4rem;
             }
             
-            .testimonials {
+            .benefits-grid,
+            .testimonials-grid {
                 grid-template-columns: 1fr;
             }
         }
     </style>
 </head>
 <body>
+    <!-- Animated Background -->
+    <div class="animated-bg"></div>
+    <div class="floating-shapes">
+        <div class="shape"></div>
+        <div class="shape"></div>
+        <div class="shape"></div>
+        <div class="shape"></div>
+        <div class="shape"></div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <div class="logo">LiveSmart</div>
+            <ul class="nav-links">
+                <li><a href="#features">Features</a></li>
+                <li><a href="#benefits">Benefits</a></li>
+                <li><a href="#testimonials">Reviews</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
     <!-- Hero Section -->
-    <section class="hero">
-        <div class="container">
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <div class="hero-badge">
+                <i class="fas fa-chart-line"></i> Revolutionary AI Technology
+            </div>
+            
             <!-- 1A) Main Headline -->
             <h1 class="main-headline">LiveSmart</h1>
             
             <!-- 1B) Supporting Headline -->
-            <p class="supporting-headline">Navigate Rising Costs with Confidence - Your AI-Powered Cost of Living Companion</p>
+            <p class="supporting-headline">Navigate Rising Costs with Confidence - Your AI-Powered Cost of Living Intelligence Platform</p>
             
             <!-- 1C) Hero Shot -->
-            <div class="hero-shot">
-                <div class="hero-image">
-                    📊💰
+            <div class="hero-visual">
+                <div class="hero-circle">
+                    <div class="hero-icon">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Hero Stats -->
+            <div class="hero-stats">
+                <div class="stat-item">
+                    <span class="stat-number">$400</span>
+                    <div class="stat-label">Average Monthly Savings</div>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">95%</span>
+                    <div class="stat-label">Prediction Accuracy</div>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">50K+</span>
+                    <div class="stat-label">Happy Users</div>
                 </div>
             </div>
             
             <!-- 1D) Benefit Summary -->
             <div class="benefit-summary">
-                <p>With inflation hitting record highs and living costs spiraling out of control, families and individuals are struggling to make ends meet. LiveSmart is your intelligent companion that tracks, predicts, and helps you optimize your spending across housing, groceries, utilities, and transportation. Make informed financial decisions and take control of your cost of living today.</p>
+                <p>With inflation hitting record highs and living costs spiraling beyond control, families and individuals are drowning in financial uncertainty. LiveSmart is your revolutionary AI companion that doesn't just track expenses—it predicts market trends, optimizes spending patterns, and transforms how you navigate the cost of living crisis. Experience the future of financial intelligence.</p>
             </div>
             
             <!-- 2) Call to Action -->
-            <a href="#signup" class="cta-button">Start Your Free Trial - Take Control Today!</a>
+            <div class="cta-container">
+                <a href="#signup" class="cta-primary">
+                    <i class="fas fa-rocket"></i> Start Your Transformation
+                </a>
+                <a href="#demo" class="cta-secondary">
+                    <i class="fas fa-play"></i> Watch Demo
+                </a>
+            </div>
         </div>
     </section>
 
     <!-- 3) Benefits Section -->
-    <section class="benefits">
+    <section class="section" id="benefits">
         <div class="container">
-            <h2 class="section-title">Why Choose LiveSmart?</h2>
+            <div class="section-header reveal">
+                <div class="section-badge">Revolutionary Features</div>
+                <h2 class="section-title">Experience Next-Level Financial Intelligence</h2>
+                <p class="section-subtitle">Discover how LiveSmart transforms ordinary budgeting into extraordinary financial mastery</p>
+            </div>
+            
             <div class="benefits-grid">
-                <div class="benefit-card">
-                    <div class="benefit-icon">🎯</div>
-                    <h3>Smart Budget Tracking</h3>
-                    <p>AI-powered analysis of your spending patterns with personalized recommendations to reduce costs without sacrificing quality of life.</p>
+                <div class="benefit-card reveal">
+                    <div class="benefit-icon">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <h3>AI-Powered Budget Intelligence</h3>
+                    <p>Revolutionary machine learning algorithms analyze your spending DNA to create hyper-personalized optimization strategies that adapt in real-time to your lifestyle changes and market fluctuations.</p>
                 </div>
                 
-                <div class="benefit-card">
-                    <div class="benefit-icon">📈</div>
-                    <h3>Cost Prediction Engine</h3>
-                    <p>Anticipate price changes for essentials like groceries, rent, and utilities up to 6 months in advance using market data and trends.</p>
+                <div class="benefit-card reveal">
+                    <div class="benefit-icon">
+                        <i class="fas fa-crystal-ball"></i>
+                    </div>
+                    <h3>Predictive Cost Engine</h3>
+                    <p>Harness advanced market analytics to forecast price changes up to 12 months ahead. Be prepared for inflation spikes, seasonal variations, and market disruptions before they impact your budget.</p>
                 </div>
                 
-                <div class="benefit-card">
-                    <div class="benefit-icon">🛒</div>
-                    <h3>Deal Finder & Optimizer</h3>
-                    <p>Automatically discover the best deals, discounts, and alternatives for your regular purchases, saving you hundreds monthly.</p>
+                <div class="benefit-card reveal">
+                    <div class="benefit-icon">
+                        <i class="fas fa-magic"></i>
+                    </div>
+                    <h3>Intelligent Deal Discovery</h3>
+                    <p>Our AI scouts millions of deals across thousands of retailers, automatically finding the perfect alternatives and timing your purchases for maximum savings without compromising quality.</p>
                 </div>
                 
-                <div class="benefit-card">
-                    <div class="benefit-icon">📱</div>
-                    <h3>Real-Time Alerts</h3>
-                    <p>Get instant notifications when prices drop on items you need or when you're approaching budget limits in any category.</p>
+                <div class="benefit-card reveal">
+                    <div class="benefit-icon">
+                        <i class="fas fa-bolt"></i>
+                    </div>
+                    <h3>Real-Time Financial Alerts</h3>
+                    <p>Lightning-fast notifications powered by live market data streams. Get instant alerts for price drops, budget warnings, and exclusive opportunities tailored to your spending patterns.</p>
                 </div>
                 
-                <div class="benefit-card">
-                    <div class="benefit-icon">🏠</div>
-                    <h3>Location Intelligence</h3>
-                    <p>Compare cost of living across different areas and neighborhoods to make informed decisions about where to live or relocate.</p>
+                <div class="benefit-card reveal">
+                    <div class="benefit-icon">
+                        <i class="fas fa-globe"></i>
+                    </div>
+                    <h3>Location Intelligence Matrix</h3>
+                    <p>Advanced geospatial analytics compare cost of living across neighborhoods, cities, and regions with unprecedented accuracy, including hidden costs and quality of life factors.</p>
                 </div>
                 
-                <div class="benefit-card">
-                    <div class="benefit-icon">💡</div>
-                    <h3>Personalized Action Plans</h3>
-                    <p>Receive customized strategies to reduce your biggest expenses while maintaining your lifestyle preferences and goals.</p>
+                <div class="benefit-card reveal">
+                    <div class="benefit-icon">
+                        <i class="fas fa-rocket"></i>
+                    </div>
+                    <h3>Personalized Action Engine</h3>
+                    <p>Dynamic strategy generation creates custom action plans that evolve with your goals, automatically adjusting recommendations based on your progress and changing circumstances.</p>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- 4) Social Proof Section -->
-    <section class="social-proof">
+    <section class="section" id="testimonials">
         <div class="container">
-            <h2 class="section-title">What Our Users Are Saying</h2>
-            <div class="testimonials">
-                <div class="testimonial">
-                    <p class="testimonial-text">LiveSmart helped me reduce my monthly expenses by $400 without changing my lifestyle. The AI recommendations were spot-on and the deal finder saved me more than I ever imagined possible.</p>
-                    <p class="testimonial-author">Sarah Chen</p>
-                    <p class="testimonial-role">Marketing Manager, Melbourne</p>
+            <div class="section-header reveal">
+                <div class="section-badge">Success Stories</div>
+                <h2 class="section-title">Transforming Lives Every Day</h2>
+                <p class="section-subtitle">Real people achieving extraordinary results with LiveSmart</p>
+            </div>
+            
+            <div class="testimonials-grid">
+                <div class="testimonial reveal">
+                    <div class="testimonial-quote">"</div>
+                    <p class="testimonial-text">LiveSmart's AI completely revolutionized my financial life. I've saved over $5,000 this year while actually improving my quality of life. The predictive engine warned me about grocery price spikes three weeks early!</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">SC</div>
+                        <div class="author-info">
+                            <h4>Sarah Chen</h4>
+                            <p>Marketing Director, Melbourne</p>
+                        </div>
+                    </div>
                 </div>
                 
-                <div class="testimonial">
-                    <p class="testimonial-text">As a small business owner, managing both personal and business costs was overwhelming. LiveSmart's prediction engine helped me budget for the next quarter and avoid financial surprises.</p>
-                    <p class="testimonial-author">Michael Rodriguez</p>
-                    <p class="testimonial-role">Café Owner, Sydney</p>
+                <div class="testimonial reveal">
+                    <div class="testimonial-quote">"</div>
+                    <p class="testimonial-text">As a business owner, cash flow is everything. LiveSmart's predictive analytics helped me prepare for market changes and optimize both personal and business expenses. It's like having a financial crystal ball.</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">MR</div>
+                        <div class="author-info">
+                            <h4>Michael Rodriguez</h4>
+                            <p>Restaurant Owner, Sydney</p>
+                        </div>
+                    </div>
                 </div>
                 
-                <div class="testimonial">
-                    <p class="testimonial-text">The location intelligence feature was a game-changer when I was considering moving. It showed me exactly how much I could save by relocating just 15 minutes away while keeping the same quality of life.</p>
-                    <p class="testimonial-author">Emma Thompson</p>
-                    <p class="testimonial-role">Software Developer, Brisbane</p>
+                <div class="testimonial reveal">
+                    <div class="testimonial-quote">"</div>
+                    <p class="testimonial-text">The location intelligence feature saved me $18,000 annually when choosing where to relocate. It analyzed everything from housing costs to commute expenses to lifestyle factors I never considered.</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">ET</div>
+                        <div class="author-info">
+                            <h4>Emma Thompson</h4>
+                            <p>Software Architect, Brisbane</p>
+                        </div>
+                    </div>
                 </div>
                 
-                <div class="testimonial">
-                    <p class="testimonial-text">With three kids and a mortgage, every dollar counts. LiveSmart's grocery optimization alone saves us $150 per month, and the utility tracking helped us reduce our energy bills by 30%.</p>
-                    <p class="testimonial-author">David and Lisa Park</p>
-                    <p class="testimonial-role">Parents of Three, Perth</p>
+                <div class="testimonial reveal">
+                    <div class="testimonial-quote">"</div>
+                    <p class="testimonial-text">With three kids and a mortgage, every dollar matters. LiveSmart's family optimization algorithms reduced our expenses by $600 monthly while finding better products and services. It's financial magic!</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">DP</div>
+                        <div class="author-info">
+                            <h4>David & Lisa Park</h4>
+                            <p>Parents of Three, Perth</p>
+                        </div>
+                    </div>
                 </div>
                 
-                <div class="testimonial">
-                    <p class="testimonial-text">I was skeptical about another budgeting app, but LiveSmart is different. It actually learns your habits and preferences, making realistic suggestions that you'll actually follow.</p>
-                    <p class="testimonial-author">Professor James Wilson</p>
-                    <p class="testimonial-role">Economics, University of Adelaide</p>
+                <div class="testimonial reveal">
+                    <div class="testimonial-quote">"</div>
+                    <p class="testimonial-text">From an academic perspective, LiveSmart's economic modeling is impressively sophisticated. As someone who studies market behaviors, I'm amazed by its predictive accuracy and practical applications.</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">JW</div>
+                        <div class="author-info">
+                            <h4>Professor James Wilson</h4>
+                            <p>Economics, University of Adelaide</p>
+                        </div>
+                    </div>
                 </div>
                 
-                <div class="testimonial">
-                    <p class="testimonial-text">The real-time alerts saved me from overspending during the holiday season. I stayed within budget while still getting everything on my family's wishlist. Absolutely brilliant!</p>
-                    <p class="testimonial-author">Rachel Kumar</p>
-                    <p class="testimonial-role">Nurse, Canberra</p>
+                <div class="testimonial reveal">
+                    <div class="testimonial-quote">"</div>
+                    <p class="testimonial-text">Working in healthcare, I understand the value of preventive care. LiveSmart applies this same principle to finances—preventing financial stress before it starts. It's transformed my relationship with money.</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">RK</div>
+                        <div class="author-info">
+                            <h4>Rachel Kumar</h4>
+                            <p>Registered Nurse, Canberra</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final CTA Section -->
+    <section class="section">
+        <div class="container">
+            <div class="section-header reveal">
+                <div class="section-badge">Ready to Transform?</div>
+                <h2 class="section-title">Your Financial Future Starts Now</h2>
+                <p class="section-subtitle">Join thousands who've already revolutionized their cost of living management</p>
+                
+                <div class="cta-container">
+                    <a href="#signup" class="cta-primary">
+                        <i class="fas fa-star"></i> Begin Your Journey - Free Trial
+                    </a>
+                    <a href="#learn-more" class="cta-secondary">
+                        <i class="fas fa-info-circle"></i> Learn More
+                    </a>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Student Information -->
-    <div style="position: fixed; bottom: 10px; right: 10px; background: rgba(255,255,255,0.9); padding: 10px; border-radius: 8px; font-size: 0.8rem; color: #333; box-shadow: 0 2px 10px rgba(0,0,0,0.1); z-index: 1000;">
+    <div class="student-info">
         <div><strong>Student:</strong> Thoran Kumar Cherukuru Ramesh</div>
         <div><strong>Student ID:</strong> s224967779</div>
         <div><strong>Task:</strong> 6.2C Landing Page</div>
+        <div><strong>Unit:</strong> SIT317/SIT726</div>
     </div>
 
     <script>
-        // Add some interactive elements
+        // Smooth scrolling and advanced interactions
         document.addEventListener('DOMContentLoaded', function() {
-            // Animate elements on scroll
-            const observerOptions = {
-                threshold: 0.1,
-                rootMargin: '0px 0px -50px 0px'
-            };
+            // Navbar scroll effect
+            const navbar = document.getElementById('navbar');
             
-            const observer = new IntersectionObserver(function(entries) {
+            window.addEventListener('scroll', function() {
+                if (window.scrollY > 100) {
+                    navbar.classList.add('scrolled');
+                } else {
+                    navbar.classList.remove('scrolled');
+                }
+            });
+            
+            // Scroll reveal animation
+            const revealElements = document.querySelectorAll('.reveal');
+            const revealObserver = new IntersectionObserver(function(entries) {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
-                        entry.target.style.opacity = '1';
-                        entry.target.style.transform = 'translateY(0)';
+                        entry.target.classList.add('revealed');
                     }
                 });
-            }, observerOptions);
-            
-            // Observe benefit cards and testimonials
-            document.querySelectorAll('.benefit-card, .testimonial').forEach(el => {
-                el.style.opacity = '0';
-                el.style.transform = 'translateY(30px)';
-                el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-                observer.observe(el);
+            }, {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
             });
             
-            // CTA button interaction
-            document.querySelector('.cta-button').addEventListener('click', function(e) {
-                e.preventDefault();
-                alert('Thank you for your interest! In a real implementation, this would redirect to a signup form.');
+            revealElements.forEach(el => {
+                revealObserver.observe(el);
             });
+            
+            // Smooth scrolling for navigation links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+            
+            // Interactive CTA buttons
+            document.querySelectorAll('.cta-primary, .cta-secondary').forEach(button => {
+                button.addEventListener('click', function(e) {
+                    if (this.getAttribute('href').startsWith('#')) {
+                        e.preventDefault();
+                        
+                        // Create ripple effect
+                        const ripple = document.createElement('div');
+                        ripple.style.position = 'absolute';
+                        ripple.style.borderRadius = '50%';
+                        ripple.style.background = 'rgba(255,255,255,0.3)';
+                        ripple.style.transform = 'scale(0)';
+                        ripple.style.animation = 'ripple 0.6s linear';
+                        ripple.style.pointerEvents = 'none';
+                        
+                        const rect = this.getBoundingClientRect();
+                        const size = Math.max(rect.width, rect.height);
+                        ripple.style.width = ripple.style.height = size + 'px';
+                        ripple.style.left = (e.clientX - rect.left - size / 2) + 'px';
+                        ripple.style.top = (e.clientY - rect.top - size / 2) + 'px';
+                        
+                        this.style.position = 'relative';
+                        this.appendChild(ripple);
+                        
+                        setTimeout(() => {
+                            ripple.remove();
+                        }, 600);
+                        
+                        // Show modal or alert
+                        setTimeout(() => {
+                            showSignupModal();
+                        }, 200);
+                    }
+                });
+            });
+            
+            // Parallax effect for floating shapes
+            window.addEventListener('scroll', function() {
+                const scrolled = window.pageYOffset;
+                const shapes = document.querySelectorAll('.shape');
+                
+                shapes.forEach((shape, index) => {
+                    const speed = (index + 1) * 0.1;
+                    shape.style.transform = `translateY(${scrolled * speed}px) rotate(${scrolled * 0.05}deg)`;
+                });
+            });
+            
+            // Dynamic stats counter animation
+            function animateStats() {
+                const statNumbers = document.querySelectorAll('.stat-number');
+                const observer = new IntersectionObserver(function(entries) {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            const target = entry.target;
+                            const text = target.textContent;
+                            const isNumber = text.match(/\d+/);
+                            
+                            if (isNumber) {
+                                const finalNumber = parseInt(isNumber[0]);
+                                const increment = finalNumber / 50;
+                                let current = 0;
+                                
+                                const timer = setInterval(() => {
+                                    current += increment;
+                                    if (current >= finalNumber) {
+                                        current = finalNumber;
+                                        clearInterval(timer);
+                                    }
+                                    target.textContent = text.replace(/\d+/, Math.floor(current));
+                                }, 30);
+                            }
+                            observer.unobserve(target);
+                        }
+                    });
+                }, { threshold: 0.5 });
+                
+                statNumbers.forEach(stat => observer.observe(stat));
+            }
+            
+            animateStats();
+            
+            // Add CSS for ripple animation
+            const style = document.createElement('style');
+            style.textContent = `
+                @keyframes ripple {
+                    to {
+                        transform: scale(4);
+                        opacity: 0;
+                    }
+                }
+            `;
+            document.head.appendChild(style);
         });
+        
+        // Signup modal function
+        function showSignupModal() {
+            const modal = document.createElement('div');
+            modal.style.cssText = `
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0,0,0,0.8);
+                backdrop-filter: blur(10px);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                z-index: 10000;
+                animation: fadeIn 0.3s ease;
+            `;
+            
+            const modalContent = document.createElement('div');
+            modalContent.style.cssText = `
+                background: rgba(255,255,255,0.1);
+                backdrop-filter: blur(30px);
+                border: 1px solid rgba(255,255,255,0.2);
+                border-radius: 25px;
+                padding: 50px;
+                text-align: center;
+                color: white;
+                max-width: 500px;
+                margin: 20px;
+                box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+            `;
+            
+            modalContent.innerHTML = `
+                <h3 style="font-size: 2rem; margin-bottom: 20px; background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">Coming Soon!</h3>
+                <p style="font-size: 1.2rem; margin-bottom: 30px; color: rgba(255,255,255,0.8);">Thank you for your interest in LiveSmart! In a real implementation, this would redirect to our signup form.</p>
+                <button onclick="this.parentElement.parentElement.remove()" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); border: none; padding: 15px 30px; border-radius: 50px; color: white; font-size: 1.1rem; font-weight: 600; cursor: pointer; transition: all 0.3s ease;">Close</button>
+            `;
+            
+            modal.appendChild(modalContent);
+            document.body.appendChild(modal);
+            
+            // Close on background click
+            modal.addEventListener('click', function(e) {
+                if (e.target === modal) {
+                    modal.remove();
+                }
+            });
+            
+            // Add fade in animation
+            const fadeInStyle = document.createElement('style');
+            fadeInStyle.textContent = `
+                @keyframes fadeIn {
+                    from { opacity: 0; transform: scale(0.9); }
+                    to { opacity: 1; transform: scale(1); }
+                }
+            `;
+            document.head.appendChild(fadeInStyle);
+        }
     </script>
 </body>
 </html>
